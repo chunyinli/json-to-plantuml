@@ -37,6 +37,7 @@ if (process.stdin.isTTY) {
 } else {
     // handle piped content 
     var input = [];
+    var ignore_list = [];
     if (ignore!= undefined)  {
         ignore_list = ignore.split(",")
     }
