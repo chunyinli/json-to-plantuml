@@ -3,7 +3,6 @@ var _ = require("lodash"),
     plantumlify = require("../lib/plantumlify"),
     byline = require('byline'),
     fs = require('fs'),
-    request = require('request'),
     argv = require('minimist')(process.argv.slice(2));
 
 function jsonToPlantuml(jsonData, ignore_list) {
@@ -30,15 +29,6 @@ if (process.stdin.isTTY) {
             }
             jsonToPlantuml(data, ignore_list);
         });
-    }
-    else if (url != undefined) {
-        request(url, function (err, response, data) {
-            if (!error && response.statusCode == 200) {
-                jsonToPlantuml(data, ignore_list);
-            } else {
-                return console.log(err);
-            }
-        })
     }
     else {
         printHelp();
